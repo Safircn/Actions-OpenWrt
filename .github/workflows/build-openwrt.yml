@@ -20,8 +20,8 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/openwrt/archive
+  REPO_BRANCH: af7e7ab684d5dd89a3072ad7b29a81a2669ef54f
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
@@ -70,7 +70,18 @@ jobs:
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
-
+    - name: Install feeds 1
+      run: cd openwrt && ./scripts/feeds install -d y sambuca-web-device ookla kmod-wlan-v9_8964 minidlna
+    - name: Install feeds 2
+      run: cd openwrt && ./scripts/feeds install -d y streamboost3 krouter-scripts-sb3
+    - name: Install feeds 3
+      run: cd openwrt && ./scripts/feeds install -d y bwestd3 callhome3 deviceclassifier libsbdaemon speedtest
+    - name: Install feeds 4
+      run: cd openwrt && ./scripts/feeds install -d y lil-ozker nanite kmod-nexus nxstat overlord3 pe4 qdiscman3
+    - name: Install feeds 5
+      run: cd openwrt && ./scripts/feeds install -d y kmod-sbfc kmod-sbsb sonic streamboost3-data streamboost3-keys
+    - name: Install feeds 6
+      run: cd openwrt && ./scripts/feeds install -d y jansson jquery fcgi
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
 
